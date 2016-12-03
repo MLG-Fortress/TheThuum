@@ -50,7 +50,7 @@ public class GreyBeard implements Listener{
 						return;
 					switch (Plugin.thisOne.getConfig().getInt("display.audible chat")) {
 						case (2):
-							event.setMessage(ChatColor.valueOf(Plugin.thisOne.getConfig().getString("display.color").toUpperCase()) + event.getMessage());
+							//event.setMessage(ChatColor.valueOf(Plugin.thisOne.getConfig().getString("display.color").toUpperCase()) + event.getMessage());
 							break;
 						case (1):
 							event.getPlayer().sendMessage(ChatColor.valueOf(Plugin.thisOne.getConfig().getString("display.color").toUpperCase()) + event.getMessage());
