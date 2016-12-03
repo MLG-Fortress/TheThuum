@@ -1,8 +1,10 @@
 package com.reilaos.bukkit.TheThuum.shouts;
 
 import java.util.List;
+import java.util.Set;
 
 import org.bukkit.Effect;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -44,12 +46,12 @@ public class FusRoDah implements Shout {
 		dragonBorn.getWorld().playEffect(dragonBorn.getLocation(), Effect.GHAST_SHOOT, 0, distance + 10);
 		if (level >= 2) {
 			World world = dragonBorn.getWorld();
-			List<Block> sight = dragonBorn.getLineOfSight(null, 4);
+			List<Block> sight = dragonBorn.getLineOfSight((Set<Material>) null, 4);
 			if (sight.size() >=0 ) world.createExplosion(sight.get(sight.size() - 1).getLocation(),0);
 		}
 		
 		if (level == 3){
-			List<Block> sight = dragonBorn.getLineOfSight(null, 32);
+			List<Block> sight = dragonBorn.getLineOfSight((Set<Material>) null, 32);
 			for(int i = 8; i < 32 && i < sight.size() ; i += 6){
 				Plugin.scheduler.scheduleSyncDelayedTask(Plugin.thisOne, new Explosion(sight.get(i).getLocation(), 0, false), i/3);
 			}

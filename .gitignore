@@ -160,5 +160,17 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-# Mac crap
+# Mac junk
 .DS_Store
+
+# ZEINTELLIJ
+.idea
+*.iml
+workspace.xml
+tasks.xml
+.idea/libraries
+.idea/copyright
+out/
+target/
+*.MF
+*.name

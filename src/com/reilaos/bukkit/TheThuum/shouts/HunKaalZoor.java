@@ -1,6 +1,7 @@
 package com.reilaos.bukkit.TheThuum.shouts;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.LivingEntity;
@@ -11,6 +12,8 @@ import org.bukkit.potion.PotionEffectType;
 
 import com.reilaos.bukkit.TheThuum.Plugin;
 import com.reilaos.bukkit.TheThuum.delays.RemoveEntity;
+
+import java.util.Set;
 
 public class HunKaalZoor implements Shout {
 	
@@ -25,7 +28,7 @@ public class HunKaalZoor implements Shout {
 	
 	@Override
 	public void shout(Player dovahkiin, int level) {
-		Location spawnHere = dovahkiin.getLastTwoTargetBlocks(null, 30).get(0).getLocation();
+		Location spawnHere = dovahkiin.getLastTwoTargetBlocks((Set<Material>) null, 30).get(0).getLocation();
 		LivingEntity hero = (LivingEntity) spawnHere.getWorld().spawnEntity(spawnHere, heroes[level-1]);
 		if (hero instanceof Tameable)
 			((Tameable)  hero).setOwner(dovahkiin);
