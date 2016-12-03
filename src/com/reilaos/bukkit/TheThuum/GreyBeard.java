@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
@@ -26,7 +27,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class GreyBeard implements Listener{
 	
-	public HashMap<String, Shout> ShoutTable = new HashMap<String, Shout>();
+	public ConcurrentHashMap<String, Shout> ShoutTable = new ConcurrentHashMap<>();
 	
 	// Parses chat to see if it's a shout.  Determines level of the shout.
 	// Does parsing only.  Permissions and the like are handled by GreyBeard.shout()
@@ -39,22 +40,24 @@ public class GreyBeard implements Listener{
 		
 		if (length == 4) return;  // There are no 4-word shouts.
 		
-		if (ShoutTable.containsKey(parsed)){
+		if (ShoutTable.containsKey(parsed)) {
 			int power = message.length;
-			switch(Plugin.thisOne.getConfig().getInt("display.audible chat")){
-			case (2):
-				event.setMessage(ChatColor.valueOf(Plugin.thisOne.getConfig().getString("display.color").toUpperCase()) + event.getMessage());
-				break;
-			case (1):
-				event.getPlayer().sendMessage(ChatColor.valueOf(Plugin.thisOne.getConfig().getString("display.color").toUpperCase()) + event.getMessage());
-			case (0):
-				event.setCancelled(true);
-			break;
-			}
-			new BukkitRunnable()
-			{
+
+			new BukkitRunnable() {
 				public void run()
 				{
+					if (event.getPlayer().isDead() || event.getPlayer().hasMetadata("DEAD"))
+						return;
+					switch (Plugin.thisOne.getConfig().getInt("display.audible chat")) {
+						case (2):
+							event.setMessage(ChatColor.valueOf(Plugin.thisOne.getConfig().getString("display.color").toUpperCase()) + event.getMessage());
+							break;
+						case (1):
+							event.getPlayer().sendMessage(ChatColor.valueOf(Plugin.thisOne.getConfig().getString("display.color").toUpperCase()) + event.getMessage());
+						case (0):
+							event.setCancelled(true);
+							break;
+					}
 					shout(event.getPlayer(), ShoutTable.get(parsed), power);
 				}
 			}.runTask(Plugin.thisOne);
