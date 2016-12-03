@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -20,6 +21,7 @@ import org.bukkit.ChatColor;
 
 import com.reilaos.bukkit.TheThuum.shouts.Shout;
 import com.reilaos.bukkit.TheThuum.shouts.ShoutType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 
 public class GreyBeard implements Listener{
@@ -28,9 +30,8 @@ public class GreyBeard implements Listener{
 	
 	// Parses chat to see if it's a shout.  Determines level of the shout.
 	// Does parsing only.  Permissions and the like are handled by GreyBeard.shout()
-	@EventHandler (priority=EventPriority.HIGH)
-	public void onPlayerChat(PlayerChatEvent event) {
-		if (event.isCancelled()) return;
+	@EventHandler (ignoreCancelled = true, priority=EventPriority.HIGH)
+	public void onPlayerChat(AsyncPlayerChatEvent event) {
 		
 		String parsed = event.getMessage().toLowerCase().replaceAll("[^A-Za-z\\s]", "");
 		String [] message = parsed.split(" ", 4);
@@ -50,7 +51,13 @@ public class GreyBeard implements Listener{
 				event.setCancelled(true);
 			break;
 			}
-			shout(event.getPlayer(), ShoutTable.get(parsed), power);
+			new BukkitRunnable()
+			{
+				public void run()
+				{
+					shout(event.getPlayer(), ShoutTable.get(parsed), power);
+				}
+			}.runTask(Plugin.thisOne);
 		}
 	}
 	
