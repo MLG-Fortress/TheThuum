@@ -31,7 +31,7 @@ public class GreyBeard implements Listener{
 	
 	// Parses chat to see if it's a shout.  Determines level of the shout.
 	// Does parsing only.  Permissions and the like are handled by GreyBeard.shout()
-	@EventHandler (ignoreCancelled = true, priority=EventPriority.HIGH)
+	@EventHandler (ignoreCancelled = true, priority=EventPriority.LOWEST)
 	public void onPlayerChat(AsyncPlayerChatEvent event) {
 		
 		String parsed = event.getMessage().toLowerCase().replaceAll("[^A-Za-z\\s]", "");
