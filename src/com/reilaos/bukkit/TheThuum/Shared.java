@@ -5,6 +5,8 @@ package com.reilaos.bukkit.TheThuum;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.reilaos.bukkit.TheThuum.shouts.ShoutAreaOfEffectEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -32,6 +34,9 @@ public class Shared {
 			
 			returnMe.add(victim);
 		}
-		return returnMe;
+
+		ShoutAreaOfEffectEvent event = new ShoutAreaOfEffectEvent(returnMe);
+		Bukkit.getPluginManager().callEvent(event);
+		return event.getAffectedEntities();
 	}
 }
