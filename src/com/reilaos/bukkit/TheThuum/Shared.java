@@ -35,7 +35,7 @@ public class Shared {
 			returnMe.add(victim);
 		}
 
-		ShoutAreaOfEffectEvent event = new ShoutAreaOfEffectEvent(returnMe);
+		ShoutAreaOfEffectEvent event = new ShoutAreaOfEffectEvent(returnMe, dragonBorn);
 		Bukkit.getPluginManager().callEvent(event);
 		return event.getAffectedEntities();
 	}

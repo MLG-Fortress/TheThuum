@@ -24,15 +24,22 @@ public class ShoutAreaOfEffectEvent extends Event
     }
 
     List<Entity> affectedEntities;
+    Player player;
 
-    public ShoutAreaOfEffectEvent(List<Entity> affectedEntities)
+    public ShoutAreaOfEffectEvent(List<Entity> affectedEntities, Player player)
     {
         this.affectedEntities = affectedEntities;
+        this.player = player;
     }
 
     public List<Entity> getAffectedEntities()
     {
         return this.affectedEntities;
+    }
+
+    public Player getPlayer()
+    {
+        return player;
     }
 
     public void setAffectedEntities(List<Entity> newAffectedEntities)
