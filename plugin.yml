@@ -1,3 +1,4 @@
 name: TheThuum
 main: com.reilaos.bukkit.TheThuum.Plugin
-version: 0.6
+version: 0.7
+api-version: '1.13'
