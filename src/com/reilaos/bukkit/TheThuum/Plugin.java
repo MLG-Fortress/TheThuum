@@ -39,21 +39,21 @@ public class Plugin extends JavaPlugin{
 			arngeir.ShoutTable.put(shoutType.shout.words()[0] + " " + shoutType.shout.words()[1]+ " " + shoutType.shout.words()[2], shoutType.shout);			
 		}
 		log.info("[TheThuum] Loading custom shouts.");
-		for (Object customShout : getConfig().getList("customshouts")){
-			Map<String, ?> customShoutConfig = ((LinkedHashMap)customShout);
-			CustomShout constructShout = new CustomShout();
-			constructShout.words[0] = (String) customShoutConfig.get("firstword");
-			constructShout.words[1] = (String) customShoutConfig.get("secondword");
-			constructShout.words[2] = (String) customShoutConfig.get("thirdword");
-			constructShout.words[3] = (String) customShoutConfig.get("name");
-			constructShout.words[3] = (String) customShoutConfig.get("description");
-			constructShout.playerCommands.put(1, (List<String>) (customShoutConfig.get("firstcommands")));
-			constructShout.playerCommands.put(2, (List<String>) (customShoutConfig.get("secondcommands")));
-			constructShout.playerCommands.put(3, (List<String>) (customShoutConfig.get("thirdcommands")));
-			arngeir.ShoutTable.put(constructShout.words[0], constructShout);
-			arngeir.ShoutTable.put(constructShout.words[0] + " " + constructShout.words[1], constructShout);
-			arngeir.ShoutTable.put(constructShout.words[0] + " " + constructShout.words[1] + " " + constructShout.words[2], constructShout);
-		}
+//		for (Object customShout : getConfig().getList("customshouts")){
+//			Map<String, ?> customShoutConfig = ((LinkedHashMap)customShout);
+//			CustomShout constructShout = new CustomShout();
+//			constructShout.words[0] = (String) customShoutConfig.get("firstword");
+//			constructShout.words[1] = (String) customShoutConfig.get("secondword");
+//			constructShout.words[2] = (String) customShoutConfig.get("thirdword");
+//			constructShout.words[3] = (String) customShoutConfig.get("name");
+//			constructShout.words[3] = (String) customShoutConfig.get("description");
+//			constructShout.playerCommands.put(1, (List<String>) (customShoutConfig.get("firstcommands")));
+//			constructShout.playerCommands.put(2, (List<String>) (customShoutConfig.get("secondcommands")));
+//			constructShout.playerCommands.put(3, (List<String>) (customShoutConfig.get("thirdcommands")));
+//			arngeir.ShoutTable.put(constructShout.words[0], constructShout);
+//			arngeir.ShoutTable.put(constructShout.words[0] + " " + constructShout.words[1], constructShout);
+//			arngeir.ShoutTable.put(constructShout.words[0] + " " + constructShout.words[1] + " " + constructShout.words[2], constructShout);
+//		}
 		
 		pm.registerEvents(arngeir,this);
 		for(ShoutType blah:ShoutType.values()){
