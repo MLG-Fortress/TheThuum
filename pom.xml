@@ -14,7 +14,7 @@
     <repositories>
         <repository>
             <id>purpur</id>
-            <url>https://repo.pl3x.net/</url>
+            <url>https://repo.purpurmc.org/snapshots</url>
         </repository>
 
     </repositories>
@@ -44,9 +44,9 @@
     <dependencies>
         <!--Bukkit API-->
         <dependency>
-            <groupId>net.pl3x.purpur</groupId>
+            <groupId>org.purpurmc.purpur</groupId>
             <artifactId>purpur-api</artifactId>
-            <version>1.17.1-R0.1-SNAPSHOT</version>
+            <version>26.1.2.build.2570-experimental</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

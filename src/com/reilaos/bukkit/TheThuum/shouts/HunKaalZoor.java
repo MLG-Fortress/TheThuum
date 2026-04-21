@@ -24,7 +24,7 @@ public class HunKaalZoor implements Shout {
 		return words;
 	}
 	
-	private EntityType[] heroes = {EntityType.SNOWMAN, EntityType.WOLF, EntityType.IRON_GOLEM};
+	private EntityType[] heroes = {EntityType.SNOW_GOLEM, EntityType.WOLF, EntityType.IRON_GOLEM};
 	
 	@Override
 	public void shout(Player dovahkiin, int level) {
@@ -36,7 +36,7 @@ public class HunKaalZoor implements Shout {
 			((IronGolem) hero).setPlayerCreated(true);
 		
 		
-		hero.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1200, 20));
+		hero.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 1200, 20));
 		spawnHere.getWorld().createExplosion(spawnHere, 0, false);
 		
 		Plugin.scheduler.scheduleSyncDelayedTask(Plugin.thisOne, new RemoveEntity(hero, true), 1200);
